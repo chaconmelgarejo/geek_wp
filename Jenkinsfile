@@ -1,5 +1,4 @@
 #!groovy
-library('DOCKERLIB')
 pipeline {
 agent any
 
