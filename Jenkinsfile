@@ -4,15 +4,15 @@ pipeline {
 agent any
 
 environment {
-    WP_CONTAINER= 'wp-evergreen'
-    MYSQL_CONTAINER= 'mysql-evergreen'
+    WP_CONTAINER= 'wp-geek'
+    MYSQL_CONTAINER= 'mysql-geek'
     IMAGES= 'php:7.0-apache'
     IMAGES_DB= 'mysql/mysql-server:5.7'
-    DATABASE = 'evergreen'
-    DATABASE_PASSW = 'secret'
-    SCM = 'https://github.com/TeravisionTechnologies/Evergreen.git'
+    DATABASE = 'geek_wp'
+    DATABASE_PASSW = 'nx6120'
+    SCM = 'https://github.com/chaconmelgarejo/geek_wp.git'
     SCM_BRANCH = 'deploy'
-    WP_URL01 = 'http://localhost/evergreen'
+    WP_URL01 = 'http://localhost/geek'
     WP_URL02 = 'http://192.168.70.27:8492'
 }
 
@@ -53,7 +53,7 @@ stages {
      // -p <port_local: port_container> --name wp- <project name> --link mysql- <project name>: mysql
       agent {
          dockerfile {
-           args "-p 8492:80 --name wp-evergreen --link mysql-evergreen:mysql"
+           args "-p 8492:80 --name wp-geek --link mysql-geek:mysql"
          } 
       }
       steps {
