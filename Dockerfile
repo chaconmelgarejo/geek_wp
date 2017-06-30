@@ -25,6 +25,10 @@ RUN cd /tmp \
 && mv wp-cli.phar /usr/local/bin/wp \
 && chmod +x /usr/local/bin/wp
 
+RUN wget -O - https://wordpress.org/wordpress-4.8.tar.gz | tar zx -C /var/www/html --strip-components=1
+COPY wp-config.php /
+RUN chown -R www-data:www-data /var/www/html
+
 RUN  echo 'jenkins     ALL=NOPASSWD: ALL' >> /etc/sudoers
 
 RUN { \
