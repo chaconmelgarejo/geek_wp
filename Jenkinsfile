@@ -12,8 +12,8 @@ environment {
     DATABASE_PASSW = 'nx6120'
     SCM = 'https://github.com/chaconmelgarejo/geek_wp.git'
     SCM_BRANCH = 'deploy'
-    WP_URL01 = 'http://localhost/geek'
-    WP_URL02 = 'http://192.168.70.27:8492'
+    WP_URL01 = 'http://www.geekdevops.com'
+    WP_URL02 = 'http://192.168.70.32:8888'
 }
 
 options { 
@@ -53,7 +53,7 @@ stages {
      // -p <port_local: port_container> --name wp- <project name> --link mysql- <project name>: mysql
       agent {
          dockerfile {
-           args "-p 8492:80 --name wp-geek --link mysql-geek:mysql"
+           args "-p 8888:80 --name wp-geek --link mysql-geek:mysql"
          } 
       }
       steps {

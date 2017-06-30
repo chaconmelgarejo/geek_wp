@@ -1,0 +1,41 @@
+FROM phusion/baseimage 
+
+CMD ["/sbin/my_init"] 
+
+ENV LANG en_US.UTF-8 
+ENV LANGUAGE en_US:en 
+ENV LC_ALL en_US.UTF-8 
+
+RUN apt-get update -y 
+
+
+# install the PHP extensions we need
+RUN apt-get install -y apache2 php7.0 libjpeg-dev \
+php-pear libapache2-mod-php7.0 php7.0-mysql mysql-client \
+php7.0-curl php7.0-json php7.0-cgi \
+libpng12-dev software-properties-common wget git tree sudo curl acl
+
+# set recommended PHP.ini settings
+# see https://secure.php.net/manual/en/opcache.installation.php
+RUN { \
+		echo 'opcache.memory_consumption=128'; \
+		echo 'opcache.interned_strings_buffer=8'; \
+		echo 'opcache.max_accelerated_files=4000'; \
+		echo 'opcache.revalidate_freq=2'; \
+		echo 'opcache.fast_shutdown=1'; \
+		echo 'opcache.enable_cli=1'; \
+	} >> /etc/php/7.0/apache2/php.ini
+
+RUN a2enmod rewrite expires
+
+
+
+RUN rm -f /etc/service/sshd/down 
+
+# Regenerate SSH host keys. baseimage-docker does not contain any, so you 
+# have to do that yourself. You may also comment out this instruction; the 
+# init system will auto-generate one during boot. 
+
+RUN /etc/my_init.d/00_regen_ssh_host_keys.sh 
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/*
