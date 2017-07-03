@@ -18,6 +18,7 @@
 --
 -- Table structure for table `wp_commentmeta`
 --
+CREATE DATABASE geek_wp;
 
 DROP TABLE IF EXISTS `wp_commentmeta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -41,7 +42,7 @@ LOCK TABLES `wp_commentmeta` WRITE;
 /*!40000 ALTER TABLE `wp_commentmeta` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wp_commentmeta` ENABLE KEYS */;
 UNLOCK TABLES;
-
+•••••••
 --
 -- Table structure for table `wp_comments`
 --
